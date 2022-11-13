@@ -1,0 +1,68 @@
+<!-- Page 1: View users
+Display all the users in a table format. Please find the columns below:
+•	Name
+•	Email
+•	Phone
+•	Website
+•	Company name
+Clicking on a row should take you to their posts page
+ 
+Page 2: View user posts
+Display all the posts of the user in a Card format. Show the following details on the card.
+•	Title
+•	Body
+•	3 recent comments
+o	Name
+o	Body
+o	Email
+•	Add delete and edit icons for each card.
+•	Delete the post when clicking on the delete icon.
+•	Allow multi-select to delete multiple posts at a time.
+•	Alert for delete confirmation
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table</title>
+    <script src="table.js"></script>
+    <style>
+        table, td, th {  
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th{
+    background-color: #04AA6D;
+}
+th, td {
+  padding: 15px;
+}
+tr:hover {background-color: coral; cursor: pointer;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Website</th>
+              <th>Company name</th>
+            </tr>
+          </thead>
+          <tbody id="data">
+          </tbody>
+        </table>
+      </div>
+</body>
+</html>
