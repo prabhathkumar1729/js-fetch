@@ -18,6 +18,7 @@ function delpost(postid) {
       if (result == 200) {
         let elem = document.getElementById(postid);
         elem.remove();
+        selectedboxes.splice(selectedboxes.indexOf(postid), 1);
         // location.reload();
       } else {
         alert("Error deleting post");
@@ -54,7 +55,7 @@ function multi_conf() {
 }
 
 function editpost(postid) {
-  postbody = document.getElementById("post" + postid + "-body"); // title.style.backgroundColor="red";
+  postbody = document.getElementById("post" + postid + "-body");
   let cont = postbody.innerText;
   postbody.contentEditable = true;
   postbody.classList.add("input_focus");
