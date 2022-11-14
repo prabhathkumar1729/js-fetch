@@ -53,6 +53,35 @@ function multi_conf() {
   }
 }
 
+function editpost(postid) {
+  postbody = document.getElementById("post" + postid + "-body"); // title.style.backgroundColor="red";
+  let cont = postbody.innerText;
+  postbody.contentEditable = true;
+  postbody.classList.add("input_focus");
+  postbody.focus();
+  postbody.onblur = () => {
+    postbody.contentEditable = false;
+    postbody.classList.remove("input_focus");
+    if (cont !== postbody.innerText) {
+      if (confirm("Do you want to save the changes?")) {
+        fetch("https://jsonplaceholder.typicode.com/posts/" + postid, {
+          method: "PUT",
+          body: JSON.stringify({ body: postbody.innerText }),
+        }).then((response) => {
+          if (response.status === 200) {
+            alert("Updated successfully!");
+          } else {
+            alert("Updated unsuccessfully");
+            postbody.innerText = cont;
+          }
+        });
+      } else {
+        postbody.innerText = cont;
+      }
+    }
+  };
+}
+
 fetch("https://jsonplaceholder.typicode.com/users/" + userid + "/posts")
   .then((res) => res.json())
   .then((data) => {
@@ -70,11 +99,18 @@ fetch("https://jsonplaceholder.typicode.com/users/" + userid + "/posts")
         itemData.id +
         "' onclick='selectbox(" +
         itemData.id +
-        ")'><i class='fa-solid fa-pen-to-square'></i><i class='fa-solid fa-trash-can' onclick='conf(" +
+        ")'><i class='fa-solid fa-pen-to-square' onclick='editpost(" +
+        itemData.id +
+        ")'></i><i class='fa-solid fa-trash-can' onclick='conf(" +
         itemData.id +
         ")'></i></div>";
       temp += "<div class='title'>" + itemData.title + "</div>";
-      temp += "<div class='body'>" + itemData.body + "</div>";
+      temp +=
+        "<div class='body' id='post" +
+        itemData.id +
+        "-body'>" +
+        itemData.body +
+        "</div>";
       temp += "<div class='comments'>";
       let c_temp = "";
       let f = 1;
