@@ -34,7 +34,7 @@ function multidel() {
 }
 
 function conf(postid) {
-  if (confirm("Are you sure you want to delete the post?")) {
+  if (confirm("Are you sure you want to delete the post "+postid+"?")) {
     delpost(postid);
     alert("Post deleted successfully");
   } else {
