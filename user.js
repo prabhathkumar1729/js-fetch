@@ -66,10 +66,11 @@ function editpost(postid) {
     if (cont !== postbody.innerText) {
       if (confirm("Do you want to save the changes?")) {
         fetch("https://jsonplaceholder.typicode.com/posts/" + postid, {
-          method: "PUT",
+          method: "PATCH",
           body: JSON.stringify({ body: postbody.innerText }),
         }).then((response) => {
           if (response.status === 200) {
+            // console.log(response.json())
             alert("Updated successfully!");
           } else {
             alert("Updated unsuccessfully");
